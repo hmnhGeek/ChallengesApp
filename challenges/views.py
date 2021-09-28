@@ -14,18 +14,13 @@ challenges = {
     "august": "H",
     "september": "I",
     "october": "J",
-    "november": "K",
+    "november": None,
     "december": "L",
 }
 
 def home(request):
-    html = ""
     months = list(challenges.keys())
-
-    for month in months:
-        html += f'<li><a href="{month}">{month.capitalize()}</a></li>'
-
-    return HttpResponse(f'<ul>{html}</ul>')
+    return render(request, "challenges/index.html", {"months": months})
 
 def index_by_int(request, month):
     if month > 12 or month < 1:
